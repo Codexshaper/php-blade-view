@@ -34,24 +34,25 @@ class View
     /**
      * Create view factory instance if not exists.
      *
-     * @param  array  $views
-     * @param  string  $cache
-     * @param  \Illuminate\Contracts\Container\Container|null  $container
+     * @param array                                          $views
+     * @param string                                         $cache
+     * @param \Illuminate\Contracts\Container\Container|null $container
+     *
      * @return void
      */
     public function __construct($views = [], $cache = '', ContainerContract $container = null)
     {
         $this->app = $container;
-    	
-        if( is_null($this->app)) {
-            if (! is_array($views)) {
+
+        if (is_null($this->app)) {
+            if (!is_array($views)) {
                 $views = (array) $views;
             }
 
             $this->viewPaths = $views;
             $this->cachePath = $cache;
 
-            $this->app = $container ?? new Container;
+            $this->app = $container ?? new Container();
             Facade::setFacadeApplication($this->app);
 
             // Check this files, events and config is binding with shared or not. If not then bind
@@ -71,11 +72,11 @@ class View
      *
      * @return void
      */
-    protected function registerFileSystem() 
+    protected function registerFileSystem()
     {
-    	$this->app->bindIf('files', function () {
-    	    return new Filesystem;
-    	}, true);
+        $this->app->bindIf('files', function () {
+            return new Filesystem();
+        }, true);
     }
 
     /**
@@ -83,11 +84,11 @@ class View
      *
      * @return void
      */
-    protected function registerEvents() 
+    protected function registerEvents()
     {
-    	$this->app->bindIf('events', function () {
-    	    return new Dispatcher;
-    	}, true);
+        $this->app->bindIf('events', function () {
+            return new Dispatcher();
+        }, true);
     }
 
     /**
@@ -97,15 +98,15 @@ class View
      */
     protected function registerConfig()
     {
-    	if (! is_array($this->viewPaths)) {
-    		throw new \Exception("Views path must be array");	
-    	}
+        if (!is_array($this->viewPaths)) {
+            throw new \Exception('Views path must be array');
+        }
 
-    	$self = $this;
+        $self = $this;
 
         $this->app->bindIf('config', function () use ($self) {
             return [
-                'view.paths' => $self->viewPaths,
+                'view.paths'    => $self->viewPaths,
                 'view.compiled' => $self->cachePath,
             ];
         }, true);
@@ -114,29 +115,31 @@ class View
     /**
      * Call view factory methods dynamically.
      *
-     * @param  string  $method
-     * @param  array  $parameters
+     * @param string $method
+     * @param array  $parameters
+     *
      * @return \Illuminate\View\View|\BadMethodCallException
      */
     public function __call($method, $parameters)
     {
-        if (! method_exists(new self, $method)) {
+        if (!method_exists(new self(), $method)) {
             return call_user_func_array([$this->view, $method], $parameters);
         }
-        
+
         return $this->$method(...$parameters);
     }
 
     /**
      * Call view factory methods statically.
      *
-     * @param  string  $method
-     * @param  array  $parameters
+     * @param string $method
+     * @param array  $parameters
+     *
      * @return \Illuminate\View\View|\BadMethodCallException
      */
     public static function __callStatic($method, $parameters)
     {
-        if(! method_exists(new static, $method)) {
+        if (!method_exists(new static(), $method)) {
             return forward_static_call_array([$this->view, $method], $parameters);
         }
 
