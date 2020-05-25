@@ -1,6 +1,6 @@
 {
-	"name": "codexshaper/php-blade",
-    "description": "Laravel Blade Templating for normal PHP project",
+	"name": "codexshaper/php-blade-view",
+    "description": "Laravel View with Blade Templating for normal PHP project",
     "keywords": [
     	"php", 
     	"blade", 
@@ -22,7 +22,7 @@
     "type": "library",
     "minimum-stability": "dev",
     "require": {
-    	"php": "~7.1|^7.2",
+    	"php": "^7.2",
         "illuminate/view": "^7.12"
     },
     "require-dev": {
