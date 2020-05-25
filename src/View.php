@@ -132,7 +132,7 @@ class View
      */
     public function __call($method, $parameters)
     {
-        if (! method_exists(new self, $method) && method_exists($this->view, $method)) {
+        if (!method_exists(new self(), $method) && method_exists($this->view, $method)) {
             return call_user_func_array([$this->view, $method], $parameters);
         }
 
@@ -149,7 +149,7 @@ class View
      */
     public static function __callStatic($method, $parameters)
     {
-        if (! method_exists(new static(), $method) && method_exists($this->view, $method)) {
+        if (!method_exists(new static(), $method) && method_exists($this->view, $method)) {
             return forward_static_call_array([$this->view, $method], $parameters);
         }
 
