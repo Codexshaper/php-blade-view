@@ -22,8 +22,11 @@
     "type": "library",
     "minimum-stability": "dev",
     "require": {
-    	 "php": "~7.1|^7.2",
+    	"php": "~7.1|^7.2",
         "illuminate/view": "^7.12"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0|^8.0"
     },
 	"autoload": {
          "psr-4": {
