@@ -1,5 +1,5 @@
 {
-	"name": "codexshaper/php-blade-view",
+    "name": "codexshaper/php-blade-view",
     "description": "Laravel View with Blade Templating for normal PHP project",
     "keywords": [
     	"php", 
@@ -28,9 +28,9 @@
     "require-dev": {
         "phpunit/phpunit": "^7.0|^8.0"
     },
-	"autoload": {
+    "autoload": {
          "psr-4": {
            "CodexShaper\\Blade\\": "src/"
          }
-	 }
+    }
 }
