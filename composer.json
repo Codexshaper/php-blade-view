@@ -8,10 +8,10 @@
     	"view"
     ],
     "license": "MIT",
-    "homepage": "https://github.com/Codexshaper/php-blade",
+    "homepage": "https://github.com/Codexshaper/php-blade-view",
     "support": {
-        "issues": "https://github.com/Codexshaper/php-blade/issues",
-        "source": "https://github.com/Codexshaper/php-blade"
+        "issues": "https://github.com/Codexshaper/php-blade-view/issues",
+        "source": "https://github.com/Codexshaper/php-blade-view"
     },
     "authors": [
         {
